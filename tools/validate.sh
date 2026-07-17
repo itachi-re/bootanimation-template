@@ -97,8 +97,18 @@ grep '^p ' "$WORKDIR/desc.txt" | while read -r _p loop pause part; do
 
   # Check for duplicate frame filenames (case-insensitive collisions) and
   # gaps in numeric sequence where filenames are purely numeric.
-  find "$PART_DIR" -maxdepth 1 -name '*.png' -printf '%f\n' 2>/dev/null | sort > "$WORKDIR/frames_$part.txt" || \
-    find "$PART_DIR" -maxdepth 1 -name '*.png' | xargs -n1 basename | sort > "$WORKDIR/frames_$part.txt"
+  # -printf is GNU-find-only; fall back to a null-delimited loop (not xargs,
+  # which would mishandle filenames containing spaces/newlines -- SC2038) on
+  # find implementations without it (e.g. BSD/macOS find).
+  if find "$PART_DIR" -maxdepth 1 -name '*.png' -printf '%f\n' > "$WORKDIR/frames_$part.txt" 2>/dev/null; then
+    sort -o "$WORKDIR/frames_$part.txt" "$WORKDIR/frames_$part.txt"
+  else
+    : > "$WORKDIR/frames_$part.txt"
+    while IFS= read -r -d '' entry; do
+      basename "$entry" >> "$WORKDIR/frames_$part.txt"
+    done < <(find "$PART_DIR" -maxdepth 1 -name '*.png' -print0)
+    sort -o "$WORKDIR/frames_$part.txt" "$WORKDIR/frames_$part.txt"
+  fi
 
   DUPES=$(sort "$WORKDIR/frames_$part.txt" | uniq -d)
   if [ -n "$DUPES" ]; then
