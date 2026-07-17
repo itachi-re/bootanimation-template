@@ -9,7 +9,8 @@ assignees: ''
 **Describe the bug**
 A clear description of what went wrong.
 
-**Environment**
+## Environment
+
 - Root manager (Magisk/KernelSU/APatch) and version:
 - Android version and API level:
 - Device model:
@@ -25,11 +26,14 @@ What you expected to happen instead.
 
 **Diagnostic output**
 Please attach the output of:
-```
+
+```bash
 adb shell su -c "sh /path/to/tools/check_bootanimation.sh"
 ```
+
 and, if the issue is path-related:
-```
+
+```bash
 adb shell su -c "sh /path/to/tools/check_boot_m.sh"
 ```
 

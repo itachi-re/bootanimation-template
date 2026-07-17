@@ -27,7 +27,7 @@ This repository is a **template**, not a boot animation itself. Fork it, drop yo
 ## ✨ Features
 
 | Feature | Description |
-|---|---|
+| --- | --- |
 | 🔌 **Root-manager agnostic** | Installs cleanly under Magisk, KernelSU, and APatch with no manual edits |
 | 📍 **Universal path detection** | Automatically finds the correct boot animation partition/mount across OEM layouts |
 | ✅ **Automatic validation** | Checks ZIP structure, `desc.txt`, PNG sequences, FPS, and resolution before install |
@@ -44,7 +44,7 @@ This repository is a **template**, not a boot animation itself. Fork it, drop yo
 **Root managers:**
 
 | Manager | Status |
-|---|---|
+| --- | --- |
 | Magisk | ✅ Fully supported |
 | KernelSU | ✅ Fully supported |
 | APatch | ✅ Fully supported |
@@ -102,13 +102,17 @@ bootanimation-template/
 3. Edit `module/metadata.yml` with your animation's name, author, and supported Android versions.
 4. Edit `module/module.prop` with your module's `id`, `name`, `version`, and `author`.
 5. Run the validator locally:
+
    ```bash
    ./tools/validate.sh module/assets/bootanimation.zip
    ```
+
 6. Preview it on a connected device without rebooting:
+
    ```bash
    ./tools/preview.sh
    ```
+
 7. Push a tag (`v1.0.0`) — GitHub Actions builds and publishes the release ZIP automatically.
 
 Full walkthrough: [`docs/Installation.md`](docs/Installation.md) and [`docs/Creating.md`](docs/Creating.md).

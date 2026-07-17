@@ -12,6 +12,7 @@ This is almost never caused by the installer itself, since installation aborts b
 ## Black screen instead of animation
 
 Usually one of:
+
 - `desc.txt` resolution doesn't match the device's actual display resolution — check with `adb shell wm size`.
 - The ZIP was compressed instead of stored — re-pack with `tools/pack.sh`, which stores files correctly.
 - The animation was installed to a path the ROM doesn't actually read from — run `tools/check_boot_m.sh` to confirm the *actual* path in use, which may differ from the detected default on heavily customized OEM builds.
@@ -37,6 +38,7 @@ This should not happen under normal operation — `preview.sh` always unmounts i
 ```bash
 adb shell su -c "umount <detected-path>/bootanimation.zip"
 ```
+
 then reboot. Your original file was only bind-mounted over, never deleted, so it is still present underneath.
 
 ## Collecting logs for a bug report
@@ -46,4 +48,5 @@ adb logcat -b all -d > full_log.txt
 adb shell su -c "cat /data/adb/modules/<module-id>/module.prop"
 ./tools/check_bootanimation.sh > diagnostic.txt
 ```
+
 Attach all three to your issue.

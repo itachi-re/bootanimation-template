@@ -3,7 +3,7 @@
 ## Android versions
 
 | Version | API level | Status |
-|---|---|---|
+| --- | --- | --- |
 | Android 8 (Oreo) | 26–27 | ✅ Supported |
 | Android 9 (Pie) | 28 | ✅ Supported |
 | Android 10 | 29 | ✅ Supported |
@@ -17,7 +17,7 @@
 ## Root managers
 
 | Manager | Install method detected via | Notes |
-|---|---|---|
+| --- | --- | --- |
 | Magisk | `MAGISK_VER_CODE` env / `magisk -v` | Uses modern installer flow; no legacy `update-binary` logic |
 | KernelSU | `ksud` binary presence | Module lands under `/data/adb/ksu/modules/` |
 | APatch | `apd` binary presence | Module lands under `/data/adb/ap/modules/` |
@@ -29,7 +29,7 @@ The installer detects the active manager at runtime — you do not need separate
 Different ROMs place `bootanimation.zip` in different locations. The installer probes all of the following, in order, and uses the first writable match:
 
 | Path | Typically used by |
-|---|---|
+| --- | --- |
 | `/system/media/` | AOSP, LineageOS, Evolution X, crDroid, PixelOS |
 | `/product/media/` | Newer AOSP-based ROMs with a separate `product` partition |
 | `/system/product/media/` | Devices with `product` merged under `system` |
@@ -40,7 +40,7 @@ Different ROMs place `bootanimation.zip` in different locations. The installer p
 ### OEM-specific notes
 
 | OEM / Skin | Notes |
-|---|---|
+| --- | --- |
 | Samsung OneUI | Boot animation path may be under `/system_ext/media/` on newer One UI builds; shutdown animation support varies by region firmware |
 | Xiaomi HyperOS / MIUI | May ship animations pre-compiled with a different container format on some regions — validated by `tools/validate.sh` before install |
 | OPPO/OnePlus ColorOS / OxygenOS | Frequently uses `/my_product/media/` in addition to standard paths on unified-OS builds |

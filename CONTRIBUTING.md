@@ -10,6 +10,7 @@ Thanks for considering a contribution to `bootanimation-template`. This document
 ## Development setup
 
 You'll need:
+
 - `bash`, `zip`/`unzip`
 - `shellcheck` (for linting installer/tool scripts)
 - `adb` (only needed for `tools/preview.sh` and on-device diagnostics)
@@ -18,20 +19,25 @@ You'll need:
 ## Making changes
 
 ### Shell scripts
+
 - Installer-context scripts (`customize.sh`, `service.sh`, `post-fs-data.sh`, `uninstall.sh`) **must** stay BusyBox `ash`/`dash`-compatible — no bashisms (`[[`, arrays, `local` is fine but avoid process substitution, `<()`, etc.). Test with `dash -n script.sh` at minimum.
 - Host-side dev tools (`tools/*.sh`, except the two `check_*.sh` device scripts) may use bash features freely, since they run on a development machine, not on-device.
 - Run `shellcheck` on any script you touch before opening a PR:
+
   ```bash
   shellcheck customize.sh service.sh post-fs-data.sh uninstall.sh
   shellcheck tools/*.sh
   ```
+
 - Quote every variable expansion. Avoid hardcoded paths — add new candidate paths to the shared `BOOTANIM_CANDIDATES` list in `customize.sh` rather than special-casing a device.
 
 ### Documentation
+
 - Keep `docs/` files scoped — if you're adding a large new topic, consider whether it deserves its own file rather than growing an existing one indefinitely.
 - Update `README.md`'s relevant section if you add a new tool or workflow.
 
 ### Tests
+
 - Add fixture ZIPs (valid and deliberately broken) to `tests/` when fixing a validator bug, so the regression is caught automatically by CI in the future.
 
 ## Commit style

@@ -6,11 +6,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and thi
 ## [Unreleased]
 
 ### Added
+
 - Nothing yet.
 
 ## [1.0.0] - 2026-07-17
 
 ### Added
+
 - Initial release of `bootanimation-template`.
 - Root-manager-agnostic `customize.sh` supporting Magisk, KernelSU, and APatch.
 - Automatic boot-animation path detection across 7 OEM partition layouts.

@@ -19,11 +19,13 @@ p <loop-count> <pause-frames> <part-folder>
 - **part-folder** — the directory name (e.g. `part0`) containing that part's PNG sequence.
 
 Example:
+
 ```
 1080 2400 60
 p 1 0 part0
 p 0 0 part1
 ```
+
 This plays `part0` once, then loops `part1` forever until boot completes.
 
 ## ZIP structure requirements

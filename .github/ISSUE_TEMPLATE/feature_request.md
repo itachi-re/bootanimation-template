@@ -16,4 +16,5 @@ What would you like to see added or changed?
 Any workarounds you're currently using instead.
 
 **Scope check**
+
 - [ ] This is about the template/installer/tooling in this repo (not a specific boot animation — those go in the `bootanimations` repo)

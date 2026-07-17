@@ -18,6 +18,7 @@ Please do **not** open a public issue for security vulnerabilities. Instead, ema
 **xanbenson99@gmail.com**
 
 Include:
+
 - A description of the issue and its potential impact
 - Steps to reproduce, if applicable
 - Affected root manager(s) and Android version(s), if relevant

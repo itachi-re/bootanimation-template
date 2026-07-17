@@ -11,6 +11,7 @@ assignees: ''
 **Root manager:**
 
 **Output of `tools/check_boot_m.sh`:**
+
 ```
 paste output here
 ```

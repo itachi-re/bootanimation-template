@@ -8,6 +8,7 @@
 ```
 
 `build.sh` assembles the module ZIP from:
+
 - `module.prop`, `customize.sh`, `uninstall.sh`, `service.sh`, `post-fs-data.sh`, `system.prop`
 - `META-INF/` (installer entry points)
 - `module/assets/bootanimation.zip` (and dark/shutdown variants if present)
