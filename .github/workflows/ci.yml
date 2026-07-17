@@ -70,7 +70,7 @@ jobs:
       - name: Check documentation links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress 'README.md docs/**/*.md'
+          args: --no-progress 'README.md' 'docs/**/*.md'
           fail: true
 
   spellcheck:
