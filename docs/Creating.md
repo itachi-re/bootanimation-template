@@ -68,7 +68,7 @@ This never modifies the actual partition contents, so a bad animation can't caus
 
 ## Dark and shutdown variants
 
-Add `bootanimation-dark.zip` and/or `shutdownanimation.zip` / `shutdownanimation-dark.zip` alongside the primary ZIP in `assets/`, and set the corresponding flags in `metadata.yml`. The installer applies these only on ROMs that support the relevant feature; unsupported ROMs simply skip the variant without error.
+Add `bootanimation-dark.zip` and/or `shutdownanimation.zip` / `shutdownanimation-dark.zip` alongside the primary ZIP in `module/assets/`, and set the corresponding flags in `metadata.yml`. The installer applies these only on ROMs that support the relevant feature; unsupported ROMs simply skip the variant without error.
 
 ## Porting between resolutions
 

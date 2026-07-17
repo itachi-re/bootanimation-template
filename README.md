@@ -22,7 +22,7 @@ Replace one ZIP. Push a tag. Ship a release.
 
 Most boot-animation repositories on GitHub are one of two things: a bare ZIP file with no installer, or a single-purpose Magisk module that breaks the moment someone runs KernelSU or APatch instead. `bootanimation-template` exists to fix that.
 
-This repository is a **template**, not a boot animation itself. Fork it, drop your `bootanimation.zip` into `assets/`, fill in `metadata.yml`, and you have a fully working, installable module — validated, previewable, and CI-tested — without writing a single line of shell script yourself.
+This repository is a **template**, not a boot animation itself. Fork it, drop your `bootanimation.zip` into `module/assets/`, fill in `module/metadata.yml`, and you have a fully working, installable module — validated, previewable, and CI-tested — without writing a single line of shell script yourself.
 
 ## ✨ Features
 
@@ -63,43 +63,47 @@ bootanimation-template/
 ├── SECURITY.md
 ├── ROADMAP.md
 ├── FAQ.md
-├── module.prop
-├── customize.sh
-├── uninstall.sh
-├── service.sh
-├── post-fs-data.sh
-├── system.prop
+├── docs/
 ├── tools/
-│   ├── bootanimation.sh
-│   ├── boot_view.sh
-│   ├── check_bootanimation.sh
-│   ├── check_boot_m.sh
+│   ├── build.sh
 │   ├── validate.sh
+│   ├── pack.sh
+│   ├── extract.sh
 │   ├── preview.sh
-│   └── build.sh
-├── META-INF/com/google/android/
-│   ├── update-binary
-│   └── updater-script
-├── assets/
-│   └── bootanimation.zip      # ← replace this
-├── metadata.yml                # ← fill this in
-├── screenshots/
-├── preview/
+│   ├── check_bootanimation.sh
+│   └── check_boot_m.sh
+├── templates/                  # starter desc.txt + part0/ for new animations
 ├── examples/
 ├── tests/
-├── docs/
-└── .github/workflows/
+├── screenshots/
+├── preview/
+├── .github/
+└── module/                     # ← the actual flashable payload
+    ├── module.prop
+    ├── system.prop
+    ├── customize.sh
+    ├── service.sh
+    ├── post-fs-data.sh
+    ├── uninstall.sh
+    ├── metadata.yml             # ← fill this in
+    ├── META-INF/com/google/android/
+    │   ├── update-binary
+    │   └── updater-script
+    └── assets/
+        └── bootanimation.zip    # ← replace this
 ```
+
+`module/` is packaged as-is by `tools/build.sh` into the flashable ZIP — everything outside it (docs, CI, dev tooling) stays out of what actually gets flashed to a device.
 
 ## 🚀 Quick Start
 
 1. **Fork** this repository.
-2. Replace `assets/bootanimation.zip` with your own animation.
-3. Edit `metadata.yml` with your animation's name, author, and supported Android versions.
-4. Edit `module.prop` with your module's `id`, `name`, `version`, and `author`.
+2. Replace `module/assets/bootanimation.zip` with your own animation.
+3. Edit `module/metadata.yml` with your animation's name, author, and supported Android versions.
+4. Edit `module/module.prop` with your module's `id`, `name`, `version`, and `author`.
 5. Run the validator locally:
    ```bash
-   ./tools/validate.sh assets/bootanimation.zip
+   ./tools/validate.sh module/assets/bootanimation.zip
    ```
 6. Preview it on a connected device without rebooting:
    ```bash
@@ -111,7 +115,7 @@ Full walkthrough: [`docs/Installation.md`](docs/Installation.md) and [`docs/Crea
 
 ## 🔨 Building & Packaging
 
-`tools/build.sh` assembles the final flashable/module ZIP from `assets/`, `module.prop`, and the installer scripts, then hands off to `tools/release.sh` for GitHub Release packaging. See [`docs/Packaging.md`](docs/Packaging.md) for the full pipeline and manual steps.
+`tools/build.sh` assembles the final flashable/module ZIP from `module/assets/`, `module/module.prop`, and the installer scripts, then hands off to `tools/release.sh` for GitHub Release packaging. See [`docs/Packaging.md`](docs/Packaging.md) for the full pipeline and manual steps.
 
 ## 👁 Previewing
 

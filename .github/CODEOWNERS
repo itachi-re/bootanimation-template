@@ -2,11 +2,11 @@
 *                           @itachi-re
 
 # Installer core requires extra scrutiny (root-privileged, BusyBox-constrained).
-/customize.sh               @itachi-re
-/service.sh                 @itachi-re
-/post-fs-data.sh            @itachi-re
-/uninstall.sh                @itachi-re
-/META-INF/                    @itachi-re
+/module/customize.sh        @itachi-re
+/module/service.sh          @itachi-re
+/module/post-fs-data.sh     @itachi-re
+/module/uninstall.sh        @itachi-re
+/module/META-INF/           @itachi-re
 
 # CI/workflow changes affect release integrity.
 /.github/workflows/          @itachi-re

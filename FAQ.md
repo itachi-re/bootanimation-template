@@ -10,7 +10,7 @@ Any of the three. The installer scripts detect Magisk, KernelSU, and APatch auto
 Almost certainly, if it runs a reasonably standard AOSP-based ROM. The installer scans multiple known boot-animation paths (`/system/media/`, `/product/media/`, `/system/product/media/`, `/vendor/media/`, `/system_ext/media/`, `/odm/media/`) rather than assuming one fixed location, which covers the vast majority of OEM layouts. If it genuinely fails, please open an issue with your device model and ROM.
 
 ### Can I use a dark-mode boot animation?
-Yes. Place it as `bootanimation-dark.zip` in `assets/` and set `dark_animation: true` in `metadata.yml`. The installer will apply it alongside the standard animation where the ROM supports dark-mode boot animations.
+Yes. Place it as `bootanimation-dark.zip` in `module/assets/` and set `dark_animation: true` in `metadata.yml`. The installer will apply it alongside the standard animation where the ROM supports dark-mode boot animations.
 
 ### Can I replace the shutdown animation too?
 Yes, using `shutdownanimation.zip` / `shutdownanimation-dark.zip` and the corresponding `shutdown_animation: true` flag in `metadata.yml`.

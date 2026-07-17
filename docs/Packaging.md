@@ -3,14 +3,14 @@
 ## Local build
 
 ```bash
-./tools/validate.sh assets/bootanimation.zip
+./tools/validate.sh module/assets/bootanimation.zip
 ./tools/build.sh
 ```
 
 `build.sh` assembles the module ZIP from:
 - `module.prop`, `customize.sh`, `uninstall.sh`, `service.sh`, `post-fs-data.sh`, `system.prop`
 - `META-INF/` (installer entry points)
-- `assets/bootanimation.zip` (and dark/shutdown variants if present)
+- `module/assets/bootanimation.zip` (and dark/shutdown variants if present)
 
 Output lands in `dist/<module-id>-<version>.zip`.
 

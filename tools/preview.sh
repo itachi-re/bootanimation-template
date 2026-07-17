@@ -10,11 +10,11 @@
 # Usage:
 #   tools/preview.sh [path/to/bootanimation.zip] [duration_seconds]
 #
-# Defaults to assets/bootanimation.zip and a 15s preview window.
+# Defaults to module/assets/bootanimation.zip and a 15s preview window.
 
 set -euo pipefail
 
-ZIP_PATH="${1:-assets/bootanimation.zip}"
+ZIP_PATH="${1:-module/assets/bootanimation.zip}"
 DURATION="${2:-15}"
 REMOTE_TMP="/data/local/tmp/preview_bootanimation.zip"
 

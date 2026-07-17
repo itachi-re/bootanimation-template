@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 itachi-re
+Copyright (c) 2026 itachi_re
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Note: this license covers the template, installer scripts, and tooling in
+this repository. It does not apply to any third-party boot animation content
+you place in assets/ when forking this template — that content retains
+whatever license its original author assigned to it. See docs/Credits.md.

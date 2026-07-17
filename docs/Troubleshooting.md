@@ -24,7 +24,7 @@ Usually one of:
 
 ## Validation fails with "invalid compression"
 
-Your ZIP was created with default compression. `desc.txt` and the part folders must be stored, not deflated. Use `tools/pack.sh assets/frames/ assets/bootanimation.zip` rather than a generic `zip` command.
+Your ZIP was created with default compression. `desc.txt` and the part folders must be stored, not deflated. Use `tools/pack.sh module/assets/frames/ module/assets/bootanimation.zip` rather than a generic `zip` command.
 
 ## Validation fails with "frame count mismatch"
 

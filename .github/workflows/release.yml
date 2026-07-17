@@ -18,16 +18,16 @@ jobs:
       - name: Verify tag matches module.prop version
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
-          PROP_VERSION=$(grep '^version=' module.prop | cut -d= -f2)
+          PROP_VERSION=$(grep '^version=' module/module.prop | cut -d= -f2)
           if [ "$TAG" != "$PROP_VERSION" ]; then
-            echo "::error::Tag ($TAG) does not match module.prop version ($PROP_VERSION)"
+            echo "::error::Tag ($TAG) does not match module/module.prop version ($PROP_VERSION)"
             exit 1
           fi
 
       - name: Validate bundled animation
         run: |
           chmod +x tools/validate.sh
-          ./tools/validate.sh assets/bootanimation.zip
+          ./tools/validate.sh module/assets/bootanimation.zip
 
       - name: Lint installer scripts
         uses: ludeeus/action-shellcheck@master

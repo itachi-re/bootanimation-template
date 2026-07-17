@@ -9,7 +9,7 @@
 #   tools/pack.sh <source_dir> <output.zip>
 #
 # Example:
-#   tools/pack.sh assets/frames/ assets/bootanimation.zip
+#   tools/pack.sh module/assets/frames/ module/assets/bootanimation.zip
 
 set -euo pipefail
 

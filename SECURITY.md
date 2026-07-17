@@ -9,7 +9,7 @@ This project is an installer/template for Android boot animation modules, runnin
 - `tools/preview.sh` failing to restore the original boot animation state on failure, leaving a device in a broken boot state
 - Supply-chain issues in `.github/workflows/` (e.g. an action pinned to a mutable tag rather than a commit SHA)
 
-Cosmetic issues, or bugs in a specific fork's own `assets/bootanimation.zip` content, are **not** in scope for this repository — report those to the fork's maintainer.
+Cosmetic issues, or bugs in a specific fork's own `module/assets/bootanimation.zip` content, are **not** in scope for this repository — report those to the fork's maintainer.
 
 ## Reporting a vulnerability
 
