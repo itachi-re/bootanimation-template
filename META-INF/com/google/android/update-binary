@@ -1,0 +1,14 @@
+#!/sbin/sh
+#################################################################################
+# update-binary
+#
+# Modern Magisk, KernelSU, and APatch all replace this file with their own
+# installer at flash time and drive installation through customize.sh rather
+# than legacy recovery update-binary logic. This file is kept only because
+# some recovery/sideload flows still look for its presence and expect exit
+# code 0. It intentionally contains no custom install logic -- do not add any.
+#################################################################################
+
+echo "This module is designed for Magisk/KernelSU/APatch and will be installed"
+echo "through their respective module installer, not raw recovery flashing."
+exit 0
