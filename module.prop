@@ -1,0 +1,7 @@
+id=bootanimation_template
+name=Boot Animation Template
+version=v1.0.0
+versionCode=1
+author=itachi_re
+description=Root-manager-agnostic boot animation module. Fork, replace assets/bootanimation.zip, ship.
+updateJson=https://raw.githubusercontent.com/itachi-re/bootanimation-template/main/update.json
