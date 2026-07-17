@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ShellCheck on installer scripts
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          ignore_paths: >-
+            tools/check_bootanimation.sh
+            tools/check_boot_m.sh
+          severity: warning
+      - name: Verify installer scripts are dash/ash-compatible
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq dash
+          for f in customize.sh service.sh post-fs-data.sh uninstall.sh tools/check_bootanimation.sh tools/check_boot_m.sh; do
+            echo "Checking $f"
+            dash -n "$f"
+          done
+
+  markdownlint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v17
+        with:
+          globs: |
+            **/*.md
+            !dist/**
+
+  yamllint:
+    name: YAML Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install yamllint
+        run: pip install --quiet yamllint
+      - name: Lint YAML files
+        run: yamllint -d relaxed metadata.yml .github/workflows/ .github/dependabot.yml .github/FUNDING.yml
+
+  jsonlint:
+    name: JSON Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate any JSON files
+        run: |
+          shopt -s globstar nullglob
+          for f in **/*.json; do
+            echo "Checking $f"
+            python3 -m json.tool "$f" > /dev/null
+          done
+
+  linkcheck:
+    name: Link Checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check documentation links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --exclude-mail 'README.md docs/**/*.md'
+          fail: true
+
+  spellcheck:
+    name: Spell Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: streetsidesoftware/cspell-action@v6
+        with:
+          files: |
+            **/*.md
