@@ -1,0 +1,63 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build and publish release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify tag matches module.prop version
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          PROP_VERSION=$(grep '^version=' module.prop | cut -d= -f2)
+          if [ "$TAG" != "$PROP_VERSION" ]; then
+            echo "::error::Tag ($TAG) does not match module.prop version ($PROP_VERSION)"
+            exit 1
+          fi
+
+      - name: Validate bundled animation
+        run: |
+          chmod +x tools/validate.sh
+          ./tools/validate.sh assets/bootanimation.zip
+
+      - name: Lint installer scripts
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          severity: warning
+
+      - name: Build module ZIP
+        run: |
+          chmod +x tools/build.sh
+          ./tools/build.sh
+
+      - name: Extract changelog section for this version
+        id: changelog
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG#v}"
+          awk -v ver="$VERSION" '
+            $0 ~ "^## \\[" ver "\\]" {flag=1; next}
+            /^## \[/ {flag=0}
+            flag {print}
+          ' CHANGELOG.md > release_notes.md
+          if [ ! -s release_notes.md ]; then
+            echo "No changelog entry found for $VERSION." > release_notes.md
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          body_path: release_notes.md
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
