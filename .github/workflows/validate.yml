@@ -21,7 +21,7 @@ jobs:
     name: Validate bootanimation.zip
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check assets exist
         run: |
           if [ ! -f module/assets/bootanimation.zip ]; then
@@ -51,7 +51,7 @@ jobs:
     name: Validate metadata.yml schema
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install PyYAML
         run: pip install --quiet pyyaml
       - name: Check required fields
@@ -85,7 +85,7 @@ jobs:
     name: Validate module.prop
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check required keys
         run: |
           for key in id name version versionCode author description; do
