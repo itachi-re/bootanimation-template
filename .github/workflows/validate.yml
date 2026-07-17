@@ -1,0 +1,97 @@
+name: Validate Boot Animation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/**'
+      - 'metadata.yml'
+      - 'module.prop'
+      - 'tools/validate.sh'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'assets/**'
+      - 'metadata.yml'
+      - 'module.prop'
+      - 'tools/validate.sh'
+
+jobs:
+  validate-zip:
+    name: Validate bootanimation.zip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check assets exist
+        run: |
+          if [ ! -f assets/bootanimation.zip ]; then
+            echo "::error::assets/bootanimation.zip is missing"
+            exit 1
+          fi
+      - name: Run validator
+        run: |
+          chmod +x tools/validate.sh
+          ./tools/validate.sh assets/bootanimation.zip --verbose
+      - name: Validate dark variant (if present)
+        run: |
+          if [ -f assets/bootanimation-dark.zip ]; then
+            ./tools/validate.sh assets/bootanimation-dark.zip --verbose
+          else
+            echo "No dark variant present -- skipping."
+          fi
+      - name: Validate shutdown variant (if present)
+        run: |
+          if [ -f assets/shutdownanimation.zip ]; then
+            ./tools/validate.sh assets/shutdownanimation.zip --verbose
+          else
+            echo "No shutdown variant present -- skipping."
+          fi
+
+  validate-metadata:
+    name: Validate metadata.yml schema
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PyYAML
+        run: pip install --quiet pyyaml
+      - name: Check required fields
+        run: |
+          python3 - <<'EOF'
+          import sys
+          import yaml
+
+          REQUIRED = [
+              "name", "author", "ported_by", "android", "fps", "resolution",
+              "dark_animation", "shutdown_animation", "root_required",
+              "magisk_module", "kernelsu", "apatch", "license", "source",
+          ]
+
+          with open("metadata.yml") as f:
+              data = yaml.safe_load(f)
+
+          missing = [k for k in REQUIRED if k not in data]
+          if missing:
+              print(f"::error::metadata.yml is missing required fields: {missing}")
+              sys.exit(1)
+
+          if not isinstance(data["android"], list) or not data["android"]:
+              print("::error::metadata.yml 'android' must be a non-empty list")
+              sys.exit(1)
+
+          print("metadata.yml schema OK")
+          EOF
+
+  validate-module-prop:
+    name: Validate module.prop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required keys
+        run: |
+          for key in id name version versionCode author description; do
+            if ! grep -q "^${key}=" module.prop; then
+              echo "::error::module.prop is missing required key: $key"
+              exit 1
+            fi
+          done
+          echo "module.prop OK"
