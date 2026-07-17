@@ -1,0 +1,42 @@
+# metadata.yml
+# Fill this in for your fork. Consumed by tools/generate_metadata.py (module.prop
+# sync), tools/validate.sh (schema check), and any gallery-generation tooling in
+# the companion `bootanimations` collection repo.
+
+name: My Boot Animation
+author: Original Creator Name
+ported_by: itachi_re
+
+android:
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+
+fps: 60
+
+resolution:
+  - 1080x2400
+
+dark_animation: false
+shutdown_animation: false
+
+root_required: true
+magisk_module: true
+kernelsu: true
+apatch: true
+
+license: Apache-2.0
+
+source: https://example.com/original-animation-source
+
+homepage: https://github.com/itachi-re/bootanimation-template
+repository: https://github.com/itachi-re/bootanimation-template
+issues: https://github.com/itachi-re/bootanimation-template/issues
+
+tags:
+  - boot-animation
+  - magisk-module
+  - kernelsu
+  - apatch
