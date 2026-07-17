@@ -1,0 +1,11 @@
+# system.prop
+#
+# Properties listed here are applied read-only at boot by Magisk/KernelSU/APatch's
+# systemless resetprop mechanism. This module does not require any system property
+# changes by default -- the boot animation is applied purely via file placement,
+# not property flags. Left present (empty of actual props) so forks that need a
+# device-specific override (e.g. forcing bootanim service always-on) have a
+# documented place to add it without inventing a new file.
+#
+# Example (commented out on purpose):
+# debug.sf.nobootanimation=0
