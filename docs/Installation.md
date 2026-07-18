@@ -25,7 +25,7 @@
 
 A successful install ends with a summary block similar to:
 
-```
+```text
 ====================================
  bootanimation-template install summary
 ====================================
