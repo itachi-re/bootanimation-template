@@ -53,7 +53,7 @@ This repository is a **template**, not a boot animation itself. Fork it, drop yo
 
 ## 📂 Repository Structure
 
-```
+```text
 bootanimation-template/
 ├── README.md
 ├── LICENSE
@@ -132,6 +132,19 @@ Full walkthrough: [`docs/Installation.md`](docs/Installation.md) and [`docs/Crea
 ## 🖼 Screenshots
 
 Add device screenshots and animation previews to `screenshots/` and `preview/`. See [`docs/Creating.md`](docs/Creating.md#previews-and-screenshots) for recommended formats (`.webp` for previews, `.gif` for quick looks).
+
+## 📖 Documentation
+
+| Doc | Covers |
+| --- | --- |
+| [`docs/Installation.md`](docs/Installation.md) | Forking, replacing the ZIP, editing metadata, first flash |
+| [`docs/Creating.md`](docs/Creating.md) | Building a `bootanimation.zip` from scratch — `desc.txt` syntax, PNG sequences, FPS/resolution rules, previewing safely |
+| [`docs/Packaging.md`](docs/Packaging.md) | How `tools/build.sh` assembles the flashable module ZIP and hands off to `tools/release.sh` |
+| [`docs/Compatibility.md`](docs/Compatibility.md) | Partition-layout notes per ROM family and root manager quirks |
+| [`docs/Troubleshooting.md`](docs/Troubleshooting.md) | Bootloops, black screen, animation not applying, module conflicts |
+| [`docs/Credits.md`](docs/Credits.md) | Upstream references and inspiration |
+
+Start with **Installation** if you're flashing an existing animation, or **Creating** if you're building your own from PNG frames.
 
 ## ❓ FAQ & Troubleshooting
 
