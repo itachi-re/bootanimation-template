@@ -12,9 +12,9 @@ assignees: ''
 
 **Output of `tools/check_boot_m.sh`:**
 
-```
-paste output here
-```
+​```text
+(paste your output here)
+​```
 
 **Which known candidate path (if any) worked, or none?**
 
