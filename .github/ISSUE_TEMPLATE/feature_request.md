@@ -6,15 +6,18 @@ labels: enhancement
 assignees: ''
 ---
 
-### What problem does this solve?
+## What problem does this solve?
+
 Describe the gap or friction you're running into.
 
-### Proposed solution
+## Proposed solution
+
 What would you like to see added or changed?
 
-### Alternatives considered
+## Alternatives considered
+
 Any workarounds you're currently using instead.
 
-### Scope check
+## Scope check
 
 - [ ] This is about the template/installer/tooling in this repo (not a specific boot animation — those go in the `bootanimations` repo)
