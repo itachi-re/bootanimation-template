@@ -1,0 +1,23 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Magisk",
+    "bootanimation",
+    "bootanim",
+    "KernelSU",
+    "APatch",
+    "itachi",
+    "OxygenOS",
+    "ColorOS",
+    "HyperOS",
+    "NothingOS",
+    "RealmeUI",
+    "crDroid"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**",
+    ".git/**"
+  ]
+}
