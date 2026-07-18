@@ -6,7 +6,7 @@ Android's `bootanimation` binary (part of AOSP, `frameworks/base/cmds/bootanimat
 
 ## `desc.txt` syntax
 
-```
+```text
 <width> <height> <fps>
 p <loop-count> <pause-frames> <part-folder>
 p <loop-count> <pause-frames> <part-folder>
@@ -20,7 +20,7 @@ p <loop-count> <pause-frames> <part-folder>
 
 Example:
 
-```
+```text
 1080 2400 60
 p 1 0 part0
 p 0 0 part1
@@ -30,7 +30,7 @@ This plays `part0` once, then loops `part1` forever until boot completes.
 
 ## ZIP structure requirements
 
-```
+```text
 bootanimation.zip
 ├── desc.txt
 ├── part0/
